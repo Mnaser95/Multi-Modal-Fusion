@@ -1,0 +1,69 @@
+{
+    "default_random_state": 42,
+    "freq":{
+        "eeg": 256,
+        "eye":1,
+        "seat":10,
+        "ecg":250
+    },
+    "window_size":{
+        "eeg": 2,
+        "eye":10,
+        "seat":2,
+        "ecg":2
+    },
+    "level_order":{
+        "modality":["Seat","EEG","Eye"],
+        "event":["Acceleration","Braking","Lane-change"]
+    },
+    "mapping": {
+       "Acceleration": 3,
+        "Braking": 5,
+        "Lane-change": 2
+    },
+    "root_path":"C:\\Users\\yagna\\Desktop\\Kennesaw State University\\GRA - Sylvia Bhattacharya\\",
+    "dyads": [1,10,5],
+    "event_descriptions":{
+        "brake" : "Event/Description/Driver begins braking",
+        "left_lane" : "Event/Description/Driver changes lanes to the left",
+        "right_lane" : "Event/Description/Driver changes lanes to the right",
+        "acceleration" : "Event/Description/Driver begins accelerating at an aggressive rate"
+    },
+    "synch_diff":{
+        "eeg":{"d1":-636, "d10": -9, "d5":-32},
+        "ecg":{"d1":-117, "d10":-80, "d5":-50},
+        "eye":{"d1":100, "d10":-52, "d5":100},
+        "seat_video":{"d1":100, "d10":148, "d5":76},
+        "seat":{"d1":200, "d10":96, "d5":176}
+    },
+    "baseline":{
+        "start_time":{"d1":2110, "d10":1290, "d5":2000},
+        "end_time":{"d1":2170,"d10":1350, "d5":2060}
+    },
+    "mne":{
+        "channel_types": {"F3":"eeg", "F1":"eeg", "Fz":"eeg", "F2":"eeg", "F4":"eeg", "C3":"eeg", "C1":"eeg", "Cz":"eeg", "C2":"eeg", "C4":"eeg", "CPz":"eeg", "P3":"eeg", "P1":"eeg", "Pz":"eeg", "P2":"eeg", "P4":"eeg", "POz":"eeg"},
+        "alpha_beta_filter":[8,38]
+    },
+    "ica":{
+        "n_components":17,
+        "exclude":[4,8]
+    },
+    "partial_classification_config" : {
+        "Braking VS Others": {
+            "category1":[1,1,1,1,0],
+            "category2":[0,0,0,0,1]
+        },
+        "Acceleration VS Others": {
+            "category1":[1,1,0,1,1],
+            "category2":[0,0,1,0,0]
+        },
+        "Lane-Switching VS Others": {
+            "category1":[1,0,1,0,1],
+            "category2":[0,1,0,1,0]
+        },
+        "In-lane VS Out-of-Lane": {
+            "category1":[0,1,0,1,0],
+            "category2":[0,0,1,0,1]
+        }
+    }
+}
